@@ -1,0 +1,488 @@
+/* ──────────────────────────────────────────────────────────────────
+   login.css — Página de login estilo Gov.Br premium
+   ────────────────────────────────────────────────────────────────── */
+
+/* ─── Reset & Base ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #1351B4;
+    --primary-dark: #0C326F;
+    --primary-light: #2670E8;
+    --accent: #168821;
+    --accent-light: #1FA02B;
+    --bg-dark: #071127;
+    --bg-card: #0F1D36;
+    --surface: #162544;
+    --text-primary: #E8EDF5;
+    --text-secondary: #8899B4;
+    --text-muted: #5A6B84;
+    --border: rgba(255, 255, 255, 0.08);
+    --error: #E74C3C;
+    --error-bg: rgba(231, 76, 60, 0.12);
+    --success: #168821;
+    --success-bg: rgba(22, 136, 33, 0.12);
+    --info: #2670E8;
+    --info-bg: rgba(38, 112, 232, 0.12);
+    --radius: 12px;
+    --radius-lg: 20px;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font);
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* ─── Partículas de fundo ──────────────────────────────────────── */
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--primary);
+    opacity: 0.06;
+    animation: floatParticle 20s infinite ease-in-out;
+}
+
+.particle:nth-child(1) { width: 300px; height: 300px; top: -50px; left: -100px; animation-delay: 0s; animation-duration: 25s; }
+.particle:nth-child(2) { width: 200px; height: 200px; top: 60%; right: -60px; animation-delay: -5s; animation-duration: 20s; background: var(--accent); }
+.particle:nth-child(3) { width: 150px; height: 150px; bottom: -30px; left: 30%; animation-delay: -10s; animation-duration: 22s; }
+.particle:nth-child(4) { width: 100px; height: 100px; top: 20%; right: 20%; animation-delay: -7s; animation-duration: 18s; background: var(--primary-light); }
+.particle:nth-child(5) { width: 250px; height: 250px; bottom: 10%; right: 30%; animation-delay: -3s; animation-duration: 28s; background: var(--accent); opacity: 0.04; }
+.particle:nth-child(6) { width: 180px; height: 180px; top: 40%; left: 20%; animation-delay: -12s; animation-duration: 24s; }
+
+@keyframes floatParticle {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -50px) scale(1.05); }
+    50% { transform: translate(-20px, 30px) scale(0.95); }
+    75% { transform: translate(40px, 20px) scale(1.03); }
+}
+
+/* ─── Layout principal ─────────────────────────────────────────── */
+.login-container {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+/* ─── Coluna de Branding (esquerda) ────────────────────────────── */
+.login-branding {
+    flex: 0 0 480px;
+    background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 50%, #1a5dc9 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-branding::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(22, 136, 33, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.login-branding::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent 10%, rgba(255,255,255,0.1) 50%, transparent 90%);
+}
+
+.branding-content {
+    position: relative;
+    z-index: 1;
+}
+
+.logo-icon {
+    width: 72px;
+    height: 72px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.brand-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.brand-subtitle {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    margin-bottom: 48px;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.brand-features {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+.feature-item:nth-child(1) { animation-delay: 0.3s; }
+.feature-item:nth-child(2) { animation-delay: 0.4s; }
+.feature-item:nth-child(3) { animation-delay: 0.5s; }
+
+.feature-item svg {
+    flex-shrink: 0;
+}
+
+.branding-footer {
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+    z-index: 1;
+}
+
+.branding-footer p {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ─── Coluna do formulário (direita) ───────────────────────────── */
+.login-form-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: var(--bg-dark);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    animation: fadeInUp 0.7s ease-out 0.2s both;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.gov-badge {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, rgba(19, 81, 180, 0.15), rgba(22, 136, 33, 0.1));
+    border: 1px solid rgba(19, 81, 180, 0.25);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.card-header h2 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+
+.card-header p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ─── Alertas Flash ────────────────────────────────────────────── */
+.alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.alert-icon {
+    flex-shrink: 0;
+    display: flex;
+}
+
+.alert-error {
+    background: var(--error-bg);
+    color: var(--error);
+    border: 1px solid rgba(231, 76, 60, 0.2);
+}
+
+.alert-success {
+    background: var(--success-bg);
+    color: var(--success);
+    border: 1px solid rgba(22, 136, 33, 0.2);
+}
+
+.alert-info {
+    background: var(--info-bg);
+    color: var(--info);
+    border: 1px solid rgba(38, 112, 232, 0.2);
+}
+
+/* ─── Formulário ───────────────────────────────────────────────── */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.form-group label svg {
+    color: var(--text-muted);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 0.95rem;
+    transition: var(--transition);
+    outline: none;
+}
+
+.form-group input::placeholder {
+    color: var(--text-muted);
+}
+
+.form-group input:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.form-group input:focus {
+    border-color: var(--primary-light);
+    background: rgba(22, 37, 68, 0.8);
+    box-shadow: 0 0 0 3px rgba(38, 112, 232, 0.15);
+}
+
+/* Password toggle */
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 50px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    border-radius: 6px;
+}
+
+.toggle-password:hover {
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ─── Botão de Login ───────────────────────────────────────────── */
+.btn-login {
+    width: 100%;
+    padding: 15px 24px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 28px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-login::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.btn-login:hover {
+    background: linear-gradient(135deg, var(--primary-light), #3a80ef);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(19, 81, 180, 0.4);
+}
+
+.btn-login:hover::before {
+    transform: translateX(100%);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+}
+
+.btn-login.loading {
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.spinner {
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ─── Footer do card ───────────────────────────────────────────── */
+.card-footer {
+    margin-top: 28px;
+    text-align: center;
+}
+
+.security-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    background: rgba(22, 136, 33, 0.06);
+    border-radius: 20px;
+    border: 1px solid rgba(22, 136, 33, 0.1);
+}
+
+/* ─── Animações ────────────────────────────────────────────────── */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ─── Responsivo ───────────────────────────────────────────────── */
+@media (max-width: 960px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-branding {
+        flex: none;
+        padding: 40px 30px;
+        min-height: auto;
+    }
+
+    .brand-subtitle {
+        margin-bottom: 24px;
+    }
+
+    .brand-features {
+        display: none;
+    }
+
+    .branding-footer {
+        display: none;
+    }
+
+    .login-form-wrapper {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-branding {
+        padding: 30px 20px;
+    }
+
+    .brand-title {
+        font-size: 1.8rem;
+    }
+
+    .login-card {
+        max-width: 100%;
+    }
+}
